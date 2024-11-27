@@ -73,6 +73,7 @@ class CRSFParser:
                         # print(input)
                         data = input[: size + extra_data]
                         # print(data, len(data))
+                        # import ipdb; ipdb.set_trace()
                         content = crsf_frame.parse(data)
                         del input[: size + extra_data]
                         # print(input)

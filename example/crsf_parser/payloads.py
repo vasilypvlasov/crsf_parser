@@ -20,6 +20,7 @@ class PacketsTypes(Enum):
     LINK_STATISTICS = 0x14
     RC_CHANNELS_PACKED = 0x16
     ATTITUDE = 0x1E
+    COMMAND = 0x32
 
 
 PAYLOADS_SIZE: "dict[int, int]" = {
@@ -30,10 +31,12 @@ PAYLOADS_SIZE: "dict[int, int]" = {
     PacketsTypes.LINK_STATISTICS: 10,
     PacketsTypes.RC_CHANNELS_PACKED: 22,
     PacketsTypes.ATTITUDE: 6,
+    PacketsTypes.COMMAND: 4,
 }
 
 payload_heartbeat = Struct("origin_device_address" / Int8ub)
 
+payload_command = Struct("sub_command" / Int8ub, "payload" / Int8ub)
 
 payload_battery_sensor = Struct(
     "voltage" / Int16ub, "current" / Int16ub, "capacity" / Int24ub, "remaining" / Int8ub
